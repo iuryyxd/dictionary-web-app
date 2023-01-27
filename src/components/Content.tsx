@@ -46,15 +46,21 @@ export default function Content({ wordData }: ContentProps) {
           <Noun wordData={wordData} />
           <Verbs wordData={wordData} />
 
-          <footer className="border-t pt-5 border-zinc-400 flex items-center gap-5 mb-32 mt-14 sm:flex-wrap">
+          <footer className="border-t pt-5 border-zinc-400 flex gap-5 mb-32 mt-14 sm:flex-wrap">
             <p className="text-zinc-400">Source</p>
-            <a
-              href={wordData.sourceUrls}
-              className="underline flex items-center gap-4 sm:flex-wrap sm:text-sm"
-            >
-              {wordData.sourceUrls}
-              <FiExternalLink className=" text-zinc-400" />
-            </a>
+
+            <div className="flex flex-col flex-wrap gap-4">
+              {wordData.sourceUrls.map((url) => (
+                <a
+                  href={url}
+                  className="underline flex items-center gap-4 sm:flex-wrap sm:text-xs"
+                  key={crypto.randomUUID()}
+                >
+                  {url}
+                  <FiExternalLink className=" text-zinc-400" />
+                </a>
+              ))}
+            </div>
           </footer>
         </main>
       )}

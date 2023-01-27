@@ -100,7 +100,7 @@ export default function Input({ setWordData }: InputProps) {
         setWordData({
           word: data[0].word,
           phonetic: data[0].phonetic ? data[0].phonetic : "",
-          sourceUrls: data[0].sourceUrls.join(", "),
+          sourceUrls: data[0].sourceUrls,
           audio,
           meanings: {
             noun,

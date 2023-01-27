@@ -7,7 +7,7 @@ import { ThemeContext } from "./context/ThemeContext";
 export interface WordDataType {
   word: string;
   phonetic: string;
-  sourceUrls: string;
+  sourceUrls: string[];
   audio: string | null;
   meanings?: {
     noun: {
