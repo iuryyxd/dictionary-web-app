@@ -18,7 +18,7 @@ export interface WordDataType {
     verbs?: {
       definitions: {
         definition: string;
-        example: string;
+        example: string | null;
       }[];
       synonyms: string | null;
       antonyms: string | null;
@@ -49,7 +49,7 @@ function App() {
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
       {theme && (
-        <div className="w-full max-w-[900px] mx-auto">
+        <div className="w-full max-w-[900px] mx-auto lg:w-full lg:px-5">
           <Header />
           <Input setWordData={setWordData} />
           <Content wordData={wordData} />

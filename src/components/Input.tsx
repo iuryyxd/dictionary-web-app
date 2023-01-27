@@ -69,9 +69,33 @@ export default function Input({ setWordData }: InputProps) {
           }
         });
 
-        // if(data[0].meanings.map((meaning: {partOfSpeech: string}) => meaning.partOfSpeech === "verbs")) {
+        let verbs = null;
 
-        // }
+        data[0].meanings.map((meaning: any) => {
+          if (meaning.partOfSpeech === "verb") {
+            let verbsArray: { definition: string; example: string | null }[] =
+              [];
+            meaning.definitions.map(
+              (definition: { definition: string; example: string | null }) =>
+                verbsArray.push({
+                  definition: definition.definition,
+                  example: definition.example ? definition.example : null,
+                })
+            );
+
+            verbs = {
+              definitions: verbsArray,
+              synonyms:
+                meaning.synonyms.length > 0
+                  ? meaning.synonyms.join(", ")
+                  : null,
+              antonyms:
+                meaning.antonyms.length > 0
+                  ? meaning.antonyms.join(", ")
+                  : null,
+            };
+          }
+        });
 
         setWordData({
           word: data[0].word,
@@ -80,6 +104,7 @@ export default function Input({ setWordData }: InputProps) {
           audio,
           meanings: {
             noun,
+            verbs
           },
         });
         toast.success("Data found!", {
