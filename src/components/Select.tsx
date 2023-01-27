@@ -21,7 +21,7 @@ export default function SelectFont() {
   return (
     <Select.Root onValueChange={(value) => handleValueChange(value)}>
       <Select.Trigger
-        className="flex items-center gap-2 focus:outline-none focus:border-none"
+        className="flex items-center gap-2"
         aria-label="Fonts"
       >
         <Select.Value placeholder="Serif" />
@@ -35,13 +35,16 @@ export default function SelectFont() {
           className={`overflow-hidden rounded shadow-2xl ${
             theme === "dark" ? "bg-zinc-900" : "bg-white"
           }`}
+          position="popper"
+	  onCloseAutoFocus={(e) => e.preventDefault()}
+	  sideOffset={10}
         >
           <Select.Viewport className="p-3">
             <Select.Group className="flex flex-col gap-2">
               {items.map((item) => (
                 <Select.Item
                   value={item}
-                  className={`cursor-pointer font-sans hover:border-none hover:outline-none ${
+                  className={`cursor-pointer font-sans ${
                     theme === "dark" ? "text-white" : "text-black"
                   }`}
                   key={crypto.randomUUID()}
